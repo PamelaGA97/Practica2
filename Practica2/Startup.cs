@@ -16,7 +16,7 @@ namespace Practica2
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        public Startup(IWebHostEnvironment env)
         {
             Configuration = configuration;
         }
@@ -27,6 +27,8 @@ namespace Practica2
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+
+            services.AddSingleton<IUserManager, UserManager>();
 
             services.AddSwaggerGen(options =>
             {

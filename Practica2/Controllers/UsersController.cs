@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
+using Logic;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -11,24 +13,29 @@ namespace Practica2.Controllers
     [ApiController]
     public class UsersController : ControllerBase
     {
+        private IUserManager _userManager;
+        public UsersController(IUserManager userManager)
+        {
+            userManager = userManager;
+        }
         [HttpGet]
         public IActionResult GetUsers()
         {
-            return Ok();
+            return Ok(_userManager.GetUsers());
         }
         [HttpPost]
-        public IActionResult PostUser()
+        public IActionResult PostUser(User user)
         {
-            return Ok();
+            return Ok(_userManager.PostUsers(user));
         }
         [HttpDelete]
-        public IActionResult DeleteUser()
+        public IActionResult DeleteUser(User user)
 
         {
             return Ok();
         }
         [HttpPut]
-        public IActionResult PutUser()
+        public IActionResult PutUser(User user)
         {
             return Ok();
         }
