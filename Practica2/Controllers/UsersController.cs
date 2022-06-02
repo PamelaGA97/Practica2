@@ -29,7 +29,7 @@ namespace Practica2.Controllers
             return Ok(_userManager.PostUsers(user));
         }
         [HttpDelete]
-        public IActionResult DeleteUser(User user)
+        public IActionResult DeleteUser(int userId)
 
         {
             return Ok();
@@ -37,7 +37,7 @@ namespace Practica2.Controllers
         [HttpPut]
         public IActionResult PutUser(User user)
         {
-            return Ok();
+            return Ok(_userManager.PutUser(user));
         }
     }
 }
