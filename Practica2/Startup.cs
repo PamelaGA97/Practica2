@@ -10,6 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.OpenApi.Models;
 
 namespace Practica2
 {
@@ -26,6 +27,24 @@ namespace Practica2
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+
+            services.AddSwaggerGen(options =>
+            {
+                var groupName = "v1";
+
+                options.SwaggerDoc(groupName, new OpenApiInfo
+                {
+                    Title = $"{Configuration.GetSection("Application").GetSection("Title").Value} {groupName}",
+                    Version = groupName,
+                    Description = "Practica 2 API",
+                    Contact = new OpenApiContact
+                    {
+                        Name = "Practica 2 Company",
+                        Email = string.Empty,
+                        Url = new Uri("https://pamela_navia_a.com/"),
+                    }
+                });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -37,6 +56,12 @@ namespace Practica2
             }
 
             app.UseHttpsRedirection();
+
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Practica 2 API V1");
+            });
 
             app.UseRouting();
 

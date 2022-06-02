@@ -10,8 +10,8 @@ namespace Logic
         {
             Users = new List<User>()
             {
-                new User() { Id = 1, Name = "Angy"},
-                new User() { Id = 2,Name = "Victor"},
+                new User() { Id = 1, Name = "Pablo"},
+                new User() { Id = 2,Name = "Laura"},
             };
         }
         public List<User> GetUsers()
